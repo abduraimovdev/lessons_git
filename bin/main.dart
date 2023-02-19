@@ -33,7 +33,8 @@ void main() {
   // print(book.getQty());
 
   // Task - 5
-
+  Student student = Student(name: "Muhammadyusuf", address: "Farg'ona", program: "Porgram", year: 2003, fee: 10);
+  print(student);
 }
 
 // Task - 1 ---------------------------------------------------------------
