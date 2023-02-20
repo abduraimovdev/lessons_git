@@ -1,91 +1,167 @@
-void main() {
+// void main() {
+//   final setOne = {'one', 'two', 'three'};
+//   final setTwo = {'one', 'two'};
+//   final listTwo = [5,4,3,2,1];
+//   final listThree = <double>[];
+//   // print(getElementAtIndex(listOne, 1));
+//   // print(add(1, 2.5));
+//   // print(add(-.54, 2.5));
+//   // print(add(11.5, .5));
+//   print(unionSet(setOne, setTwo));
+//   print(setOne.union(setTwo));
+// }
 
+import 'dart:math';
+
+T first<T>(List<T> list) => list.isNotEmpty ? list[0] : throw Exception('List is empty');
+T? getElementAtIndex<T>(List<T> list, int index) {
+  if (index < 0 || index >= list.length) {
+    return null;
+  }
+  return list[index];
 }
-// Task - 1
-/*
-abstract class Animal {}
 
-mixin Walk {
-  void walk() => print("Walking");
+num add<T extends num>(T a, T b) => a + b;
+bool doTypesMatch<L, R>(L left, R right) => L == R;
+
+List<T> where<T>(List<T> list, bool Function(T) func) {
+  var result = <T>[];
+  for (var e in list) {
+    if (func(e)) {
+      result.add(e);
+    }
+  }
+  return result;
 }
-mixin Swim {
-  void swim() => print("Swimming");
+List<R> map<T, R>(List<T> list, R Function<R>(T) func) {
+  var result = <R>[];
+  for(var e in list){
+    result.add(func(e));
+  }
+
+  return result;
 }
-mixin Fly {
-  void fly() => print("Flying");
+List<T> union<T>(List<T>listOne, List<T> listTwo) {
+  List<T> result = [];
+  for(var one in listOne){
+    if(listTwo.contains(one)){
+      result.add(one);
+    }
+  }
+  return result;
+}
+Set<T> unionSet<T>(Set<T>setOne, Set<T> setTwo) => {...setOne, ...setTwo};
+
+
+abstract class Shape{
+  double get area;
 }
 
-abstract class Mammal extends Animal  {}
-abstract class Bird extends Animal {}
-abstract class Fish extends Animal {}
+class Circle extends Shape{
+  double radius;
 
-class Dolphin extends Mammal with Swim {}
-class Bat extends Mammal with Walk, Fly {}
-class Cat extends Mammal with Walk {}
+  Circle({required this.radius});
 
-class Dove extends Bird with Walk, Fly {}
-class Duck extends Bird with Walk, Swim, Fly {}
-
-class Shark extends Fish with Swim {}
-class FlyingFish extends Fish with Swim, Fly {}
-*/
-
-// Task - 2
-/*
-class User {
-  void viewAllProduct() => print("Products .....");
-  void purchaseProducts() => print("Purches Product");
+  @override
+  double get area => 3.14 * radius * radius;
 }
-class Moderator extends User {
-  void approveStore() => print("approveStore");
-}
-class Vendor extends Moderator {
-  void createStore() => print("createStore");
-  void deleteStore() => print("deleteStore");
-}
-*/
 
-// Task - 3
-/*
-mixin Flutter {
-  void flutter() => print("Flutter");
-}
-mixin Chirp {
-  void chirp() => print("Chirp");
-}
-mixin Write {
-  void write() => print("Writing...");
-}
-abstract class Bird with Flutter, Chirp {}
-class QuickBird extends Bird with Write {}
-class Dash extends Bird {}
-class Parrot extends Bird {}
-*/
+class Square extends Shape{
+  double length;
+  Square({required this.length});
 
-// Task - 4
-/*
-mixin Flutter {
-  void flutter() => print("Flutter");
+  @override
+  double get area => length * length;
 }
-mixin Chirp {
-  void chirp() => print("Chirp");
+
+class Region<T extends Shape> {
+  List<T> shapes;
+  Region({required this.shapes});
+
+  double get area {
+    double totalArea = 0;
+    for(var shape in shapes) {
+      totalArea += shape.area;
+    }
+    return totalArea;
+  }
 }
-mixin Write {
-  void write() => print("Writing...");
+// void main() {
+//   var region = Region(
+//       shapes: [
+//         Circle(radius: 10),
+//         Square(length: 10),
+//         Square(length: 10),
+//       ],
+//   );
+//   print(region.area);
+// }
+
+class Account {
+  final int _id;
+  int _sum;
+
+  Account(final int id, final int money)
+      : _id = id,
+        _sum = max(0, money);
+  get id => _id;
+
+  set sum(int money) => _sum = max(0, money);
+  int get sum => _sum;
 }
-abstract class Creature {}
+class Transaction<T extends Account> {
+  T fromAccount;
+  T toAccount;
+  int sum;
 
-class Bird extends Creature with Flutter, Chirp {}
-class Insect extends Creature with Flutter {}
+  Transaction(this.fromAccount, this.toAccount, this.sum);
 
-class Human extends Creature {} // Human -> Creature
+  void execute() {
+    if(fromAccount.sum >= sum) {
+      toAccount.sum += sum;
+      fromAccount.sum -= sum;
+    }else {
+      print("Hissobda mablag' yetarli emas !");
+    }
+  }
+}
+void main(){
+  Account acc1 = Account(1857, 4500);
+  Account acc2 = Account(3453, 5000);
 
-class QuickBird extends Bird with Write {}
-class Dash extends Bird {}
-class Parrot extends Bird {}
+  final transaction = Transaction<Account>(acc1, acc2, 1900);
 
-class Mosquito extends Insect {}
+  transaction.execute();
 
-*/
+  print(acc1.sum);
+  print(acc2.sum);
+}
+
+// class NewMap {
+//
+//   List<R> map<T, R>(List<T> list, R Function<R>(T) func) {
+//     var result = <R>[];
+//     for(var e in list){
+//       result.add(func(e));
+//     }
+//
+//     return result;
+//   }
+// }
+
+
+abstract class Person {}
+
+class Student extends Person {
+  int id;
+  String name;
+  int age;
+
+  Student(this.id, this.name, this.age);
+}
+class Course<T extends Person> {
+  List<T> students;
+  Course(this.students);
+}
 
 
