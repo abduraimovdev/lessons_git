@@ -1,60 +1,91 @@
 void main() {
-  Bus bus = Bus(name: "Chevrolet", year: 2023, speed: 200, seats: 16);
-  print(bus);
+
+}
+// Task - 1
+/*
+abstract class Animal {}
+
+mixin Walk {
+  void walk() => print("Walking");
+}
+mixin Swim {
+  void swim() => print("Swimming");
+}
+mixin Fly {
+  void fly() => print("Flying");
 }
 
-abstract class Vehicle {
-  String name;
-  int year;
-  int speed;
-  int seats;
+abstract class Mammal extends Animal  {}
+abstract class Bird extends Animal {}
+abstract class Fish extends Animal {}
 
-  Vehicle({
-    required this.name,
-    required this.year,
-    required this.speed,
-    required this.seats,
-  });
+class Dolphin extends Mammal with Swim {}
+class Bat extends Mammal with Walk, Fly {}
+class Cat extends Mammal with Walk {}
 
-  @override
-  String toString() {
-    return '$runtimeType{name: $name, year: $year, speed: $speed km, seats: $seats}';
-  }
-}
-mixin Run {
-  void run() => print("This is run");
-  void stop() => print("This is stop");
-}
-mixin Turn {
-  void right() => print("Turn the right");
-  void left() => print("Turn the left");
-}
-class Bus extends Vehicle with Run, Turn {
-  Bus({
-    required super.name,
-    required super.year,
-    required super.speed,
-    required super.seats,
-  });
-  void automaticDoor() => print("Automatic Open the Door");
-}
+class Dove extends Bird with Walk, Fly {}
+class Duck extends Bird with Walk, Swim, Fly {}
 
-class Car extends Vehicle with Run, Turn {
-  Car({
-    required super.name,
-    required super.year,
-    required super.speed,
-    required super.seats,
-  });
-  void fastSpeed() => print("Fast the speed");
+class Shark extends Fish with Swim {}
+class FlyingFish extends Fish with Swim, Fly {}
+*/
+
+// Task - 2
+/*
+class User {
+  void viewAllProduct() => print("Products .....");
+  void purchaseProducts() => print("Purches Product");
 }
-class Metro extends Vehicle with Run {
-  Metro({
-    required super.name,
-    required super.year,
-    required super.speed,
-    required super.seats,
-  });
+class Moderator extends User {
+  void approveStore() => print("approveStore");
 }
+class Vendor extends Moderator {
+  void createStore() => print("createStore");
+  void deleteStore() => print("deleteStore");
+}
+*/
+
+// Task - 3
+/*
+mixin Flutter {
+  void flutter() => print("Flutter");
+}
+mixin Chirp {
+  void chirp() => print("Chirp");
+}
+mixin Write {
+  void write() => print("Writing...");
+}
+abstract class Bird with Flutter, Chirp {}
+class QuickBird extends Bird with Write {}
+class Dash extends Bird {}
+class Parrot extends Bird {}
+*/
+
+// Task - 4
+/*
+mixin Flutter {
+  void flutter() => print("Flutter");
+}
+mixin Chirp {
+  void chirp() => print("Chirp");
+}
+mixin Write {
+  void write() => print("Writing...");
+}
+abstract class Creature {}
+
+class Bird extends Creature with Flutter, Chirp {}
+class Insect extends Creature with Flutter {}
+
+class Human extends Creature {} // Human -> Creature
+
+class QuickBird extends Bird with Write {}
+class Dash extends Bird {}
+class Parrot extends Bird {}
+
+class Mosquito extends Insect {}
+
+*/
 
 
