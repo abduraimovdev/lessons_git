@@ -132,3 +132,20 @@ bool groupSum6(int start, List<int> nums, int target) {
 //   return false;
 // }
 
+
+// Coding bat Recursion - 1 ------------------------------------------
+// Task - 1
+int factorial(int n) {
+  if(n == 1) return 1;
+  else return n * factorial(n -1);
+}
+
+// Task - 2
+
+int bunnyEars(int bunnies) {
+ if(bunnies == 0) return 0;
+ else return 2+ bunnyEars(bunnies -1);
+}
+// int fibanacci(){
+//
+// }
