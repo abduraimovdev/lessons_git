@@ -183,7 +183,7 @@ class Quiz implements Comparable<Quiz> {
 
   @override
   int get hashCode => Object().hashCode;
-
+  
   @override
   bool operator ==(Object other) {
     return other is Quiz && _id == other._id && _number == other._number && _correct == other._correct && _selection == other._selection && question == other.question && option == other.option;
