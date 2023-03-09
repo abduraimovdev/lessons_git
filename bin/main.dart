@@ -1,5 +1,7 @@
+import 'package:lesson/color_service.dart';
+
 void main() {
-  for(double i = 100; i > 0;  i = i / 2) {
-    print(i);
-  }
+  String str = "/afasfasf.red".check;
+  print("/as${str}afff.yellow".check);
+  print("/salom.red  /@3asdasak.yellows/.s s".check);
 }
