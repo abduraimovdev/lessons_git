@@ -1,0 +1,35 @@
+Index: lib/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>void main() {\n  List<int> list = [1,2,4,5,6];\n  print(list.mapReversed((e) => e * 3).runtimeType);\n\n  // String email = \"abdu778118@mail.com\";\n  // print(email.isValidEmail);\n\n  // String phone = \"+998905668118    \";\n  // print(phone.contactWithSpace());\n  // double f = 32;\n  // print(f.farhenheitToCelsius);\n}\n\nextension on String {\n  Iterable<int> encode() => runes;\n}\nextension on List<int> {\n  String decode() => map(String.fromCharCode).join();\n}\n\nextension<E, T> on Iterable<E>{\n  Iterable<T> mapReversed<T>(T Function(E value) func){\n    List<T> list = [];\n    for(E item in this){\n      list.insert(0, func(item));\n    }\n    return list;\n  }\n}\n\nextension  on String {\n  bool get isValidEmail {\n    var regex = RegExp(r'(^(\\w+\\d*)*@gmail.com|@mail.com|icloud.com)');\n    return regex.hasMatch(this);\n  }\n}\n\nextension on String {\n  String contactWithSpace() {\n    var regex = RegExp(r'^(\\+998)(\\d{2,})(\\d{3,})(\\d{2,})(\\d{2,})$');\n    String result = \"\";\n    if(regex.hasMatch(this.trim())) return regex.firstMatch(this.trim())?.groups([1, 2, 3, 4, 5]).join(\" \") ?? \"Error\";\n    return \"Plase Try Again Number Vailed !\";\n  }\n}\n\nextension on double {\n  double get celsiusToFarhenheit =>  (9 * this) / 5 + 32;\n  double get farhenheitToCelsius => 5 * (this - 32) / 9;\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/main.dart b/lib/main.dart
+--- a/lib/main.dart	
++++ b/lib/main.dart	
+@@ -19,7 +19,7 @@
+ }
+ 
+ extension<E, T> on Iterable<E>{
+-  Iterable<T> mapReversed<T>(T Function(E value) func){
++  Iterable<T> mapReversed(T Function(E value) func){
+     List<T> list = [];
+     for(E item in this){
+       list.insert(0, func(item));
+Index: bin/extentions/StringExtentions.dart
+===================================================================
+diff --git a/bin/extentions/StringExtentions.dart b/bin/extentions/StringExtentions.dart
+deleted file mode 100644
+--- a/bin/extentions/StringExtentions.dart	
++++ /dev/null	
+@@ -1,8 +0,0 @@
+-
+-extension StringExtentions on String {
+-  /// This is method Muhammadyusuf
+-  bool validPassword() {
+-    var regex = RegExp(r'(([A-Z]+)|([a-z]+)|([0-9]+)|([!@#%&]+)){8,}');
+-    return regex.hasMatch(this);
+-  }
+-}
+\ No newline at end of file

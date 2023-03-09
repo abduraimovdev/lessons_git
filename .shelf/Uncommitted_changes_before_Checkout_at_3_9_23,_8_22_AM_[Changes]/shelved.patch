@@ -1,0 +1,318 @@
+Index: lib/home_work.dart
+===================================================================
+diff --git a/lib/home_work.dart b/lib/home_work.dart
+deleted file mode 100644
+--- a/lib/home_work.dart	(revision bd8431373f3a11e91e47a5cbf8e25064ec479f5a)
++++ /dev/null	(revision bd8431373f3a11e91e47a5cbf8e25064ec479f5a)
+@@ -1,221 +0,0 @@
+-void main() {
+-  // Task - 1
+-
+-  // String str = "A1B2";
+-  // int s = 12;
+-  // print(toRadix(str, 16, 2));
+-
+-  // Task - 2
+-
+-
+-  // Task - 3
+-
+-  // ExchangeClipher ex = ExchangeClipher();
+-  // print(ex("abcXYZ"));
+-
+-  // Task - 4
+-
+-  // CaesarCode ex = CaesarCode(3);
+-  // print(ex.encode("ZZZ"));
+-  // print(ex.decode("AAA"));
+-
+-
+-  // Task - 5
+-
+-  // TestPalindromicWord word = TestPalindromicWord();
+-  // print(word.checker("flutter"));
+-
+-  // Task - 6
+-
+-
+-
+-  // Task - 7
+-
+-  // List<double> nums1 = [0.0, 1.0, 0.0, 3.0, 12.0];
+-  // print(nums1.moveZero());
+-  //
+-  // List<int> nums2 = [0, 1, 0, 3, 12];
+-  // print(nums2.moveZero());
+-
+-
+-
+-}
+-
+-
+-
+-
+-// Task - 1
+-String toRadix(String number, int inRadix, int outRadix) {
+-  int sum = int.parse(number, radix: inRadix);
+-  String result = sum.toRadixString(outRadix);
+-  return result;
+-}
+-
+-
+-// Task - 3
+-class ExchangeClipher {
+-  String call(String text) {
+-    return text.toUpperCase().split("").reversed.join("");
+-  }
+-}
+-
+-// Task - 4
+-
+-
+-class CaesarCode {
+-  int n;
+-  CaesarCode(this.n);
+-
+-  String encode(String text) {
+-    String result = "";
+-    List<int> codes = text.toUpperCase().trim().codeUnits;
+-    for(var code in codes) {
+-      if(65 <= code && code <= 90){
+-        if(code == 90){
+-          result += String.fromCharCode(65);
+-        }else {
+-          result += String.fromCharCode(code + n);
+-        }
+-      }
+-    }
+-    return result;
+-  }
+-
+-  String decode(String text) {
+-    String result = "";
+-    List<int> codes = text.toUpperCase().trim().codeUnits;
+-    for(var code in codes) {
+-      if(65 <= code && code <= 90){
+-        if(code == 65){
+-          result += String.fromCharCode(90);
+-        }else {
+-          result += String.fromCharCode(code - n);
+-        }
+-      }
+-    }
+-    return result;
+-  }
+-
+-}
+-// Task  5
+-
+-
+-class TestPalindromicWord {
+-  bool checker(String text) => text.toLowerCase() == text.toLowerCase().split("").reversed.join("");
+-}
+-
+-// Task - 6
+-
+-List moveZero(List newList) {
+-  for(var item in newList) {
+-    if(item == 0){
+-      newList.add(item);
+-      newList.remove(item);
+-    }
+-  }
+-  return newList;
+-}
+-
+-
+-// Task - 7
+-
+-extension MoveZeroes<T extends num> on List<T> {
+-  List<T> moveZero() {
+-    List<T> newList = this;
+-    for(T item in newList) {
+-      if(item == 0){
+-        newList.add(item);
+-        newList.remove(item);
+-      }
+-    }
+-    return newList;
+-  }
+-}
+-
+-
+-// Task - 8
+-
+-class Quiz implements Comparable<Quiz> {
+-  int _id;
+-  int _number;
+-  String question;
+-  List<String> option;
+-  String _correct;
+-  int _selection = -1;
+-
+-  Quiz._(
+-      this._id,
+-      this._number,
+-      this._correct,
+-      this._selection,
+-      this.question,
+-      this.option
+-      );
+-  factory Quiz({
+-    required int id,
+-    required int number,
+-    required String question,
+-    required List<String> option,
+-    required String correct,
+-    required int selection,
+-  }){
+-    option.shuffle();
+-    return Quiz._(id, number, correct, selection, question, option);
+-  }
+-
+-  @override
+-  int compareTo(Quiz other) {
+-    return _id.compareTo(other._id);
+-  }
+-
+-  Quiz copyWith({int? id, int? number, String? questions, List<String>? options, String? correct, int? selection}){
+-    return Quiz._(
+-        id ?? _id,
+-        number ?? _number,
+-        correct ?? _correct,
+-        selection ?? _selection,
+-        questions ?? question,
+-        options ?? option
+-    );
+-  }
+-
+-  // Object(this._id,this.question, this.option, this._selection, this._correct, this._number).hashCode
+-
+-  @override
+-  int get hashCode => Object().hashCode;
+-  
+-  @override
+-  bool operator ==(Object other) {
+-    return other is Quiz && _id == other._id && _number == other._number && _correct == other._correct && _selection == other._selection && question == other.question && option == other.option;
+-  }
+-
+-  @override
+-  String toString() {
+-    return 'Quiz{_id: $_id, _number: $_number, question: $question, option: $option, _correct: $_correct, _selection: $_selection}';
+-  }
+-
+-
+-  int get selection => _selection;
+-
+-  set selection(int value) {
+-    _selection = value;
+-  }
+-
+-  String get correct => _correct;
+-
+-  set correct(String value) {
+-    _correct = value;
+-  }
+-
+-  int get number => _number;
+-
+-  set number(int value) {
+-    _number = value;
+-  }
+-
+-  int get id => _id;
+-
+-  set id(int value) {
+-    _id = value;
+-  }
+-}
+\ No newline at end of file
+Index: bin/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>void main() {\n  for(double i = 100; i > 0;  i = i / 2) {\n    print(i);\n  }\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/bin/main.dart b/bin/main.dart
+--- a/bin/main.dart	(revision bd8431373f3a11e91e47a5cbf8e25064ec479f5a)
++++ b/bin/main.dart	(date 1678306673823)
+@@ -1,5 +1,12 @@
++import 'package:lesson/service/color_service.dart';
++import 'package:lesson/service/io_service.dart';
++
+ void main() {
+-  for(double i = 100; i > 0;  i = i / 2) {
+-    print(i);
+-  }
++
++  String str = "/1%..red".check;
++  print(str);
++  // io.printColor("\x1B[31m Salom \x1B[0m".red);
++  // print(color.red("salom"));
++  // print("${color.red("Qizil")} Sariq  ${color.red("red")}");
++  // print("${"qiziq".red} saroq");
+ }
+\ No newline at end of file
+Index: lib/service/color_service.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/service/color_service.dart b/lib/service/color_service.dart
+new file mode 100644
+--- /dev/null	(date 1678306703810)
++++ b/lib/service/color_service.dart	(date 1678306703810)
+@@ -0,0 +1,33 @@
++// Color color = Color();
++// class Color {
++//   String red(Object text) => "\x1B[31m $text \x1B[0m";
++// }
++// extension Colors on String {
++//   String get red => "\x1B[31m ${this} \x1B[0m";
++// }
++//
++//
++// void printColor(String text){
++//   String newText = text;
++//   var red = RegExp(r'(/([a-z A-Z]*)(.red))');
++//   var yellow = RegExp(r'(/([a-z A-Z]*)(.yellow))');
++//
++//   newText = newText.replaceAllMapped(red,(match) =>"\x1B[31m${match.group(2).toString()}\x1B[0m");
++//   newText = newText.replaceAllMapped(yellow,(match) =>"\x1B[33m${ match.group(2).toString()}\x1B[0m");
++//   print(newText);
++// }
++
++
++
++
++extension TextColorChecker on String {
++  String get check {
++    String newText = this;
++    var red = RegExp(r'(/([a-z A-Z 0-9 ! @ #  % ^ & * ( ) \.]*)(\.red))');
++    var yellow = RegExp(r'(/([a-z A-Z 0-9 ! @ #  % ^ & * ( ) \.]*)(\.yellow))');
++
++    newText = newText.replaceAllMapped(red,(match) =>"\x1B[31m${match.group(2).toString()}\x1B[0m");
++    newText = newText.replaceAllMapped(yellow,(match) =>"\x1B[33m${ match.group(2).toString()}\x1B[0m");
++    return newText;
++  }
++}
+\ No newline at end of file
+Index: lib/service/io_service.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lib/service/io_service.dart b/lib/service/io_service.dart
+new file mode 100644
+--- /dev/null	(date 1678299880176)
++++ b/lib/service/io_service.dart	(date 1678299880176)
+@@ -0,0 +1,7 @@
++IOService io = IOService();
++class IOService {
++  void printColor(String text){
++    var regex = RegExp(r'w+(.red)');
++    print(regex.allMatches(text).map((e) => e.group(0)));
++  }
++}
+\ No newline at end of file

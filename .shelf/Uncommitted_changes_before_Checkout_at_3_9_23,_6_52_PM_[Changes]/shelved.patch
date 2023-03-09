@@ -1,0 +1,25 @@
+Index: bin/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>void main() {\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/bin/main.dart b/bin/main.dart
+--- a/bin/main.dart	(revision c320016d8796ef8aa6325e7dcdf3ee9d430d98cd)
++++ b/bin/main.dart	(date 1678367700435)
+@@ -1,3 +1,10 @@
+-void main() {
++import 'dart:convert';
++import 'dart:io';
+ 
++void main() async{
++  var client = HttpClient();
++  HttpClientRequest request = await client.get('localhost', 80, '/file.txt');
++  request.headers.contentType =
++      ContentType('application', 'json', charset: 'utf-8');
++  request.write('text content👍🎯'); // Strings written will be UTF-8 encoded.
+ }
+\ No newline at end of file
+diff --git a/bin/file.txt.dart b/bin/file.txt.dart
+new file mode 100644

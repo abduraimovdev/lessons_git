@@ -1,0 +1,200 @@
+Index: bin/main.dart
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// void main() {\n//   final setOne = {'one', 'two', 'three'};\n//   final setTwo = {'one', 'two'};\n//   final listTwo = [5,4,3,2,1];\n//   final listThree = <double>[];\n//   // print(getElementAtIndex(listOne, 1));\n//   // print(add(1, 2.5));\n//   // print(add(-.54, 2.5));\n//   // print(add(11.5, .5));\n//   print(unionSet(setOne, setTwo));\n//   print(setOne.union(setTwo));\n// }\n\nimport 'dart:math';\n\nT first<T>(List<T> list) => list.isNotEmpty ? list[0] : throw Exception('List is empty');\nT? getElementAtIndex<T>(List<T> list, int index) {\n  if (index < 0 || index >= list.length) {\n    return null;\n  }\n  return list[index];\n}\n\nnum add<T extends num>(T a, T b) => a + b;\nbool doTypesMatch<L, R>(L left, R right) => L == R;\n\nList<T> where<T>(List<T> list, bool Function(T) func) {\n  var result = <T>[];\n  for (var e in list) {\n    if (func(e)) {\n      result.add(e);\n    }\n  }\n  return result;\n}\nList<R> map<T, R>(List<T> list, R Function<R>(T) func) {\n  var result = <R>[];\n  for(var e in list){\n    result.add(func(e));\n  }\n\n  return result;\n}\nList<T> union<T>(List<T>listOne, List<T> listTwo) {\n  List<T> result = [];\n  for(var one in listOne){\n    if(listTwo.contains(one)){\n      result.add(one);\n    }\n  }\n  return result;\n}\nSet<T> unionSet<T>(Set<T>setOne, Set<T> setTwo) => {...setOne, ...setTwo};\n\n\nabstract class Shape{\n  double get area;\n}\n\nclass Circle extends Shape{\n  double radius;\n\n  Circle({required this.radius});\n\n  @override\n  double get area => 3.14 * radius * radius;\n}\n\nclass Square extends Shape{\n  double length;\n  Square({required this.length});\n\n  @override\n  double get area => length * length;\n}\n\nclass Region<T extends Shape> {\n  List<T> shapes;\n  Region({required this.shapes});\n\n  double get area {\n    double totalArea = 0;\n    for(var shape in shapes) {\n      totalArea += shape.area;\n    }\n    return totalArea;\n  }\n}\n// void main() {\n//   var region = Region(\n//       shapes: [\n//         Circle(radius: 10),\n//         Square(length: 10),\n//         Square(length: 10),\n//       ],\n//   );\n//   print(region.area);\n// }\n\nclass Account {\n  final int _id;\n  int _sum;\n\n  Account(final int id, final int money)\n      : _id = id,\n        _sum = max(0, money);\n  get id => _id;\n\n  set sum(int money) => _sum = max(0, money);\n  int get sum => _sum;\n}\nclass Transaction<T extends Account> {\n  T fromAccount;\n  T toAccount;\n  int sum;\n\n  Transaction(this.fromAccount, this.toAccount, this.sum);\n\n  void execute() {\n    if(fromAccount.sum >= sum) {\n      toAccount.sum += sum;\n      fromAccount.sum -= sum;\n    }else {\n      print(\"Hissobda mablag' yetarli emas !\");\n    }\n  }\n}\nvoid main(){\n  Account acc1 = Account(1857, 4500);\n  Account acc2 = Account(3453, 5000);\n\n  final transaction = Transaction<Account>(acc1, acc2, 1900);\n\n  transaction.execute();\n\n  print(acc1.sum);\n  print(acc2.sum);\n}\n\n// class NewMap {\n//\n//   List<R> map<T, R>(List<T> list, R Function<R>(T) func) {\n//     var result = <R>[];\n//     for(var e in list){\n//       result.add(func(e));\n//     }\n//\n//     return result;\n//   }\n// }\n\n\nabstract class Person {}\n\nclass Student extends Person {\n  int id;\n  String name;\n  int age;\n\n  Student(this.id, this.name, this.age);\n}\nclass Course<T extends Person> {\n  List<T> students;\n  Course(this.students);\n}\n\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/bin/main.dart b/bin/main.dart
+--- a/bin/main.dart	
++++ b/bin/main.dart	
+@@ -1,167 +1,36 @@
+-// void main() {
+-//   final setOne = {'one', 'two', 'three'};
+-//   final setTwo = {'one', 'two'};
+-//   final listTwo = [5,4,3,2,1];
+-//   final listThree = <double>[];
+-//   // print(getElementAtIndex(listOne, 1));
+-//   // print(add(1, 2.5));
+-//   // print(add(-.54, 2.5));
+-//   // print(add(11.5, .5));
+-//   print(unionSet(setOne, setTwo));
+-//   print(setOne.union(setTwo));
+-// }
++void main() {
++  Set setOne = {1,2,3,4,5};
++  Set setTwo = {5,6,7,8};
+ 
+-import 'dart:math';
++  print(intersection(setOne, setTwo));
+ 
+-T first<T>(List<T> list) => list.isNotEmpty ? list[0] : throw Exception('List is empty');
+-T? getElementAtIndex<T>(List<T> list, int index) {
+-  if (index < 0 || index >= list.length) {
+-    return null;
+-  }
+-  return list[index];
+-}
++  List<int> listOne = [1,2,3,4,5];
++  List<int> listTwo = [5,6,7,8];
++  List<String> strList = ["sa", "Ca","da"];
+ 
+-num add<T extends num>(T a, T b) => a + b;
+-bool doTypesMatch<L, R>(L left, R right) => L == R;
++  print(listOne.fold(10, (previousValue, element) => null));
++  print(fold(listOne, 10, (previousValue, element) => null));
+ 
+-List<T> where<T>(List<T> list, bool Function(T) func) {
+-  var result = <T>[];
+-  for (var e in list) {
+-    if (func(e)) {
+-      result.add(e);
+-    }
+-  }
+-  return result;
++  strList.forEach((print));
++  forEach(strList, (print));
+ }
+-List<R> map<T, R>(List<T> list, R Function<R>(T) func) {
+-  var result = <R>[];
+-  for(var e in list){
+-    result.add(func(e));
+-  }
+ 
++Set<T> intersection<T>(Set<T>setOne, Set<T>setTwo) {
++  Set<T> result = {for(var item in setOne) if(setTwo.contains(item)) item,};
+   return result;
+ }
+-List<T> union<T>(List<T>listOne, List<T> listTwo) {
+-  List<T> result = [];
+-  for(var one in listOne){
+-    if(listTwo.contains(one)){
+-      result.add(one);
+-    }
++
++T fold<T>(List<T>list, T sum, T Function(T previousValue,T element) func){
++  T result = sum;
++  for(var item in list){
++    result = func(sum, item);
+   }
+   return result;
+ }
+-Set<T> unionSet<T>(Set<T>setOne, Set<T> setTwo) => {...setOne, ...setTwo};
+-
+ 
+-abstract class Shape{
+-  double get area;
+-}
+-
+-class Circle extends Shape{
+-  double radius;
+-
+-  Circle({required this.radius});
+-
+-  @override
+-  double get area => 3.14 * radius * radius;
++void forEach<T>(List<T> list, void Function(T element) func) {
++  for (var item in list) {
++    func(item);
++  }
+ }
+ 
+-class Square extends Shape{
+-  double length;
+-  Square({required this.length});
+-
+-  @override
+-  double get area => length * length;
+-}
+-
+-class Region<T extends Shape> {
+-  List<T> shapes;
+-  Region({required this.shapes});
+-
+-  double get area {
+-    double totalArea = 0;
+-    for(var shape in shapes) {
+-      totalArea += shape.area;
+-    }
+-    return totalArea;
+-  }
+-}
+-// void main() {
+-//   var region = Region(
+-//       shapes: [
+-//         Circle(radius: 10),
+-//         Square(length: 10),
+-//         Square(length: 10),
+-//       ],
+-//   );
+-//   print(region.area);
+-// }
+-
+-class Account {
+-  final int _id;
+-  int _sum;
+-
+-  Account(final int id, final int money)
+-      : _id = id,
+-        _sum = max(0, money);
+-  get id => _id;
+-
+-  set sum(int money) => _sum = max(0, money);
+-  int get sum => _sum;
+-}
+-class Transaction<T extends Account> {
+-  T fromAccount;
+-  T toAccount;
+-  int sum;
+-
+-  Transaction(this.fromAccount, this.toAccount, this.sum);
+-
+-  void execute() {
+-    if(fromAccount.sum >= sum) {
+-      toAccount.sum += sum;
+-      fromAccount.sum -= sum;
+-    }else {
+-      print("Hissobda mablag' yetarli emas !");
+-    }
+-  }
+-}
+-void main(){
+-  Account acc1 = Account(1857, 4500);
+-  Account acc2 = Account(3453, 5000);
+-
+-  final transaction = Transaction<Account>(acc1, acc2, 1900);
+-
+-  transaction.execute();
+-
+-  print(acc1.sum);
+-  print(acc2.sum);
+-}
+-
+-// class NewMap {
+-//
+-//   List<R> map<T, R>(List<T> list, R Function<R>(T) func) {
+-//     var result = <R>[];
+-//     for(var e in list){
+-//       result.add(func(e));
+-//     }
+-//
+-//     return result;
+-//   }
+-// }
+-
+-
+-abstract class Person {}
+-
+-class Student extends Person {
+-  int id;
+-  String name;
+-  int age;
+-
+-  Student(this.id, this.name, this.age);
+-}
+-class Course<T extends Person> {
+-  List<T> students;
+-  Course(this.students);
+-}
+-
+-
