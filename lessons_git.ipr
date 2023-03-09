@@ -91,6 +91,13 @@
               </list>
             </value>
           </entry>
+          <entry key="data_connection_checker_nulls">
+            <value>
+              <list>
+                <option value="$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/data_connection_checker_nulls-0.0.2/lib" />
+              </list>
+            </value>
+          </entry>
           <entry key="file">
             <value>
               <list>
@@ -365,6 +372,7 @@
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/coverage-1.6.3/lib" />
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.2/lib" />
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/data_connection_checker-0.3.4/lib" />
+        <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/data_connection_checker_nulls-0.0.2/lib" />
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/file-6.1.4/lib" />
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/frontend_server_client-3.2.0/lib" />
         <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dartlang.org/glob-2.1.1/lib" />
