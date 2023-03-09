@@ -6,7 +6,8 @@ void main() {
   // print(toRadix(str, 16, 2));
 
   // Task - 2
-
+  PrintTriangle print = PrintTriangle();
+  print.powOf2Triangle(5);
 
   // Task - 3
 
@@ -51,7 +52,22 @@ String toRadix(String number, int inRadix, int outRadix) {
   return result;
 }
 
+// Task - 2
+class PrintTriangle {
+  void powOf2Triangle(int a) {
+    String str = "";
+    for(int i = 1; i <= a; i++) {
+      for(int j = 1; j <= i; j++) {
+        if(i == j) {
+          str += "$j ";
+        }
+      }
+      str += "\n";
+    }
+    print(str);
+  }
 
+}
 // Task - 3
 class ExchangeClipher {
   String call(String text) {
